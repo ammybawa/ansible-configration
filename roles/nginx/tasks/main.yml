@@ -4,12 +4,16 @@
     name: "{{ nginx_packages }}"
     state: present
     update_cache: yes
+  tags:
+    - install     
 
 - name: Start and enable nginx
   service:
     name: nginx
     state: started
     enabled: yes
+  tags:
+    - start  
 
 - name: Copy custom index.html
   copy:
@@ -19,4 +23,5 @@
     group: www-data
     mode: '0644'
   notify: Reload nginx
-
+  tags:
+    - copy      
