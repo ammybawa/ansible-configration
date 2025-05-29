@@ -1,0 +1,6 @@
+# defaults file for roles/nginx
+nginx_packages:
+  - nginx
+  - git
+  - curl
+

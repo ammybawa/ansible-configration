@@ -1,0 +1,22 @@
+# tasks file for roles/nginx
+- name: Install required packages
+  apt:
+    name: "{{ nginx_packages }}"
+    state: present
+    update_cache: yes
+
+- name: Start and enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Copy custom index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
+  notify: Reload nginx
+
